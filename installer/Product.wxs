@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*"
+           Name="Shortcut Virus Remover"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="Md. Rohan"
+           UpgradeCode="B1EE5017-3809-482D-ACA5-841D3F6412FC">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"
+             Description="Removes USB shortcut worms and their leftovers" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Shortcut Virus Remover is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Icon Id="AppIcon.exe" SourceFile="$(var.AppExe)" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.exe" />
+
+    <Feature Id="Main" Title="Shortcut Virus Remover" Level="1">
+      <ComponentGroupRef Id="AppFiles" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="Shortcut Virus Remover" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="AppMenuDir" Name="Shortcut Virus Remover" />
+      </Directory>
+    </Directory>
+
+    <ComponentGroup Id="AppFiles">
+      <Component Id="AppExe" Directory="INSTALLFOLDER" Guid="F91DD4F8-44E0-4872-B45D-56E5D6416981">
+        <File Id="AppExeFile" Source="$(var.AppExe)" KeyPath="yes" />
+        <Shortcut Id="StartMenuShortcut" Directory="AppMenuDir" Name="Shortcut Virus Remover"
+                  WorkingDirectory="INSTALLFOLDER" Icon="AppIcon.exe" Advertise="yes" />
+        <RemoveFolder Id="CleanupMenuDir" Directory="AppMenuDir" On="uninstall" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

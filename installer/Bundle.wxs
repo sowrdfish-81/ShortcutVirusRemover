@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Bundle Name="Shortcut Virus Remover"
+          Version="1.0.0.0"
+          Manufacturer="Md. Rohan"
+          UpgradeCode="C4A77D2E-5B13-4C8F-9A20-6D84E1F0B3A5"
+          IconSourceFile="..\resources\app.ico">
+
+    <WixVariable Id="WixStdbaLicenseRtf" Value="$(sys.SOURCEFILEDIR)license.rtf" />
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+
+    <Chain>
+      <MsiPackage SourceFile="..\obj\ShortcutVirusRemover.msi" Compressed="yes" />
+    </Chain>
+  </Bundle>
+</Wix>
