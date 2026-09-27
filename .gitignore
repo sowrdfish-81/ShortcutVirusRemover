@@ -1,0 +1,5 @@
+dist/
+obj/
+tools/
+.vs/
+*.user
